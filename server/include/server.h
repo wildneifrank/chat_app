@@ -5,6 +5,8 @@
 #include <string>
 #include <memory>
 #include <vector>
+#include <nlohmann/json.hpp>
+#include <httplib.h>
 #include "user.h"
 #include "message.h"
 
@@ -18,6 +20,7 @@ namespace server {
         void GetMessages();
         
         private:
+        std::shared_ptr<httplib::Server> server_;
         std::vector<User> users_;
         std::vector<Message> messages_;
     };

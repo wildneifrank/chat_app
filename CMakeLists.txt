@@ -8,5 +8,6 @@ add_subdirectory(server)
 
 add_executable(${PROJECT_NAME} server/src/main.cpp)
 
+target_link_libraries(${PROJECT_NAME} server)
 
 
