@@ -11,8 +11,8 @@ namespace server {
         User(const std::string& name, const int& id);
         ~User();
 
-        auto GetName();
-        auto GetId();
+        std::shared_ptr<std::string> GetName() const;
+        std::shared_ptr<int> GetId() const;
 
         private:
         std::shared_ptr<std::string> name_;

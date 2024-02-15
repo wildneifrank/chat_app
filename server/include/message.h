@@ -11,8 +11,8 @@ namespace server {
         Message(const std::string& text, const int& user_id);
         ~Message();
 
-        auto GetText();
-        auto GetUserId();
+        std::shared_ptr<std::string> GetText() const;
+        std::shared_ptr<int> GetUserId() const;
         
         private:
         std::shared_ptr<std::string> text_;

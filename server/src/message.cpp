@@ -9,10 +9,10 @@ namespace server{
                     user_id_(std::make_shared<int>(user_id)){}
     Message::~Message(){}
 
-    auto Message::GetText(){
-        return this->text_;
+    std::shared_ptr<std::string> Message::GetText() const{
+        return text_;
     }
-    auto Message::GetUserId(){
-        return this->user_id_;
+    std::shared_ptr<int> Message::GetUserId() const{
+        return user_id_;
     }
-}
+} // namespace server

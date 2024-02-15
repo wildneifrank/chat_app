@@ -8,6 +8,9 @@ add_subdirectory(third_party)
 # Add the source files
 set(SOURCES 
     "${CMAKE_CURRENT_SOURCE_DIR}/src/server.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/user.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/message.cpp"
+
 )
 
 # Add the header files

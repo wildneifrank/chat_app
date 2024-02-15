@@ -9,12 +9,12 @@ namespace server{
                 id_(std::make_shared<int>(id)){}
     User::~User(){}
 
-    auto User::GetName(){
-        return this->name_;
+    std::shared_ptr<std::string> User::GetName() const{
+        return name_;
     }
 
-    auto User::GetId(){
-        return this->id_;
+    std::shared_ptr<int> User::GetId() const{
+        return id_;
     }
 
 
