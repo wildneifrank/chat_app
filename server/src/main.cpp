@@ -1,6 +1,8 @@
 #include <iostream>
+#include "../include/server.h"
 
 int main(){
-    std::cout << "Ola mundo" << std::endl;
+    server::Server server;
+    server.InitializationServer();
     return 0;
 }
