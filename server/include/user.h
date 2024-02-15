@@ -8,8 +8,11 @@
 namespace server {
     class User{
         public:
-        User();
+        User(const std::string& name, const int& id);
         ~User();
+
+        auto GetName();
+        auto GetId();
 
         private:
         std::shared_ptr<std::string> name_;

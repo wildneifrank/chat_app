@@ -8,8 +8,11 @@
 namespace server {
     class Message{
         public:
-        Message();
+        Message(const std::string& text, const int& user_id);
         ~Message();
+
+        auto GetText();
+        auto GetUserId();
         
         private:
         std::shared_ptr<std::string> text_;
