@@ -31,6 +31,9 @@ namespace server {
 
     void Server::PostMessages() {
         server_->Post("/", [&](const httplib::Request& req, httplib::Response& res) {
+            res.set_header("Access-Control-Allow-Origin", "*");
+            res.set_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+            res.set_header("Access-Control-Allow-Headers", "Content-Type");
             if (req.has_header("Content-Length") && req.body.length() > 0) {
                 try {
                     
@@ -59,6 +62,9 @@ namespace server {
 
     void Server::GetData() {
     server_->Get("/", [&](const httplib::Request& req, httplib::Response& res) {
+        res.set_header("Access-Control-Allow-Origin", "*");
+        res.set_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+        res.set_header("Access-Control-Allow-Headers", "Content-Type");
         try {
             // Convert users_ vector to JSON
             nlohmann::json json_users;
