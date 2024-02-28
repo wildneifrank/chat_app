@@ -5,7 +5,15 @@
 #include <string>
 #include <memory>
 #include <vector>
+#include "database.h"
 #include "user.h"
+#include "message.h"
+
+struct DataInfo {
+    std::vector<User> users;
+    std::vector<Message> messages;
+};
+
 
 namespace server {
     class Auth{
@@ -13,16 +21,18 @@ namespace server {
         Auth();
         ~Auth() = default;
 
-
-        void EncryptPassword();
-        User GetUser(const int& id) const;
-        bool UserAlreadyExists();  
         std::shared_ptr<std::string> SignIn(const std::string& email, const std::string& password) const;
-        void SignOut(const std::string& email);
+        void SignUp(const std::string& email, const std::string& name, const std::string& password);
 
+        DataInfo GetDataInfo() const;
 
         private:
-        std::vector<User> users_;
+        bool UserAlreadyExists(const std::string& email) const;  
+        std::string EncryptPassword(const std::string& password) const;
+        User GetUser(const int& id) const;
+
+        private:
+        std::unique_ptr<Database> database_;
     };
 } // namespace server
 
