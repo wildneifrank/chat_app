@@ -8,7 +8,7 @@
 namespace server {
     class User{
         public:
-        User(const std::string& name, const int& id);
+        User(const std::string& name, const int& id, const std::string& email, const std::string& token, const std::string& encrypted_password);
         ~User() = default;
 
         std::shared_ptr<std::string> GetName() const;
