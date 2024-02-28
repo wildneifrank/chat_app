@@ -9,12 +9,18 @@ namespace server {
     class User{
         public:
         User(const std::string& name, const int& id);
-        ~User();
+        ~User() = default;
 
         std::shared_ptr<std::string> GetName() const;
         std::shared_ptr<int> GetId() const;
+        std::shared_ptr<std:string> GetToken() const;
+        std::shared_ptr<std::string> GetPassword() const;
+        std::shared_ptr<std::string> GetEmail() const;
 
         private:
+        std::shared_ptr<std::string> email_;
+        std::shared_ptr<std::string> encrypted_password_;
+        std::shared_ptr<std::string> token_;
         std::shared_ptr<std::string> name_;
         std::shared_ptr<int> id_;
     };
