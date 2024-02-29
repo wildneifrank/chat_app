@@ -14,8 +14,10 @@ namespace server {
         std::shared_ptr<std::string> GetName() const;
         std::shared_ptr<int> GetId() const;
         std::shared_ptr<std:string> GetToken() const;
+        void SetToken(std::string& token);
         std::shared_ptr<std::string> GetPassword() const;
         std::shared_ptr<std::string> GetEmail() const;
+
 
         private:
         std::shared_ptr<std::string> email_;
