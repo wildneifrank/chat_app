@@ -27,9 +27,9 @@ namespace server {
         DataInfo GetDataInfo() const;
 
         private:
-        bool UserAlreadyExists(const std::string& email) const;  
         std::string EncryptPassword(const std::string& password) const;
-        User GetUser(const int& id) const;
+        std::shared_ptr<User> GetUser(const int& id) const;
+        std::string GenerateToken() const;
 
         private:
         std::unique_ptr<Database> database_;
