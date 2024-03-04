@@ -10,8 +10,8 @@
 #include "message.h"
 
 struct DataInfo {
-    std::vector<User> users;
-    std::vector<Message> messages;
+    std::vector<server::User> users;
+    std::vector<server::Message> messages;
 };
 
 
@@ -22,17 +22,19 @@ namespace server {
         ~Auth() = default;
 
         std::shared_ptr<std::string> SignIn(const std::string& email, const std::string& password) const;
-        void SignUp(const std::string& email, const std::string& name, const std::string& password);
-
+        std::string SignUp(const std::string& email, const std::string& name, const std::string& password) const;
+        void HandleMessage(const std::string& email, const std::string& message, const std::string& token);
         DataInfo GetDataInfo() const;
 
         private:
+        std::shared_ptr<int> ValidateToken(const std::string& email, const std::string& token) const;
         std::string EncryptPassword(const std::string& password) const;
-        std::shared_ptr<User> GetUser(const int& id) const;
+        std::shared_ptr<User> Auth::GetUser(const std::string& email) const;
         std::string GenerateToken() const;
 
         private:
         std::unique_ptr<Database> database_;
+        std::shared_ptr<int> current_id_;
     };
 } // namespace server
 

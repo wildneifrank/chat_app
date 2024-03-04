@@ -13,7 +13,7 @@ namespace server {
     class Server{
         public:
         Server();
-        ~Server();
+        ~Server() = default;
         void InitializationServer();
         void Login();
         void Register();

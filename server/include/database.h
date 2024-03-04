@@ -20,7 +20,6 @@ namespace server {
         void PostMessage(Message& message);
 
         private:
-        std::shared_ptr<int> current_id_;
         std::vector<User> users_;
         std::vector<Message> messages_;
     };
