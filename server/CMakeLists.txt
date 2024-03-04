@@ -10,7 +10,8 @@ set(SOURCES
     "${CMAKE_CURRENT_SOURCE_DIR}/src/server.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/user.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/message.cpp"
-
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/auth.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/database.cpp"
 )
 
 # Add the header files
@@ -18,6 +19,8 @@ set(HEADERS
     "${CMAKE_CURRENT_SOURCE_DIR}/include/message.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/server.h"
     "${CMAKE_CURRENT_SOURCE_DIR}/include/user.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/auth.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include/database.h"
 )
 
 # Add the library
