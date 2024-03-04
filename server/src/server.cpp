@@ -26,6 +26,7 @@ namespace server
         this->Login();
         this->Register();
         this->GetData();
+        this->PostMessage();
         std::cout << "Server started successfully. Listening on port 8080" << std::endl;
         server_->listen("localhost", 8080);
     }
@@ -124,6 +125,33 @@ namespace server
         } catch (const std::exception& e) {
             res.set_content("Error converting data to JSON", "text/plain");
         } });
+    }
+
+    void Server::PostMessage()
+    {
+        server_->Post("/", [&](const httplib::Request &req, httplib::Response &res)
+                      {
+            res.set_header("Access-Control-Allow-Origin", "*");
+            res.set_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+            res.set_header("Access-Control-Allow-Headers", "Content-Type");
+            if (req.has_header("Content-Length") && req.body.length() > 0) {
+                auto json_body = nlohmann::json::parse(req.body);
+                std::string email = json_body["email"];
+                std::string message = json_body["message"];
+                std::string full_token = req.get_header_value("Authorization");
+                std::string token = full_token.substr(7);
+                try
+                {
+                    auth_->HandleMessage(email, message, token);
+                    res.set_content("Message received successfully", "text/plain");
+                }
+                catch(const std::exception& e)
+                {
+                    std::cerr << "Error occurred: " << e.what() << '\n';
+                }
+            } else {
+                res.set_content("No message provided in the request body", "text/plain");
+            } });
     }
  
 
