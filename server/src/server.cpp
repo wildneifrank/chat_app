@@ -111,9 +111,6 @@ namespace server
                 nlohmann::json json_user;
                 json_user["name"] = *user.GetName();
                 json_user["id"] = *user.GetId();
-                json_user["token"] = *user.GetToken();
-                json_user["email"] = *user.GetEmail();
-                json_user["encryptedPassword"] = *user.GetEncryptedPassword();
                 json_users.push_back(json_user);
             }
 
