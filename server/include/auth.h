@@ -25,9 +25,9 @@ namespace server {
         std::string SignUp(const std::string& email, const std::string& name, const std::string& password) const;
         void HandleMessage(const std::string& email, const std::string& message, const std::string& token);
         DataInfo GetDataInfo() const;
-
-        private:
         std::shared_ptr<int> ValidateToken(const std::string& email, const std::string& token) const;
+        
+        private:
         std::string EncryptPassword(const std::string& password) const;
         std::shared_ptr<User> Auth::GetUser(const std::string& email) const;
         std::string GenerateToken() const;
