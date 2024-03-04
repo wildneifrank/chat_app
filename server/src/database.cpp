@@ -6,8 +6,7 @@
 #include "../include/message.h"
 
 namespace server {
-    Database::Database():current_id_(std::make_shared<int>(1)),
-                        users_(std::vector<User>()),
+    Database::Database():users_(std::vector<User>()),
                         messages_(std::vector<Message>())
                         {}
     
