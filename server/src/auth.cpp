@@ -48,6 +48,13 @@ namespace server {
         database_->PostMessage(*messageInfo);
     }
 
+    DataInfo Auth::GetDataInfo() const {
+        DataInfo data;
+        data.users = database_->GetUsers();
+        data.messages = database_->GetMessages();
+        return data;
+    }
+
     std::shared_ptr<int> Auth::ValidateToken(const std::string& email, const std::string& token) const{
         const auto user = this->GetUser(email);
         if(*(user->GetToken()) == token){
