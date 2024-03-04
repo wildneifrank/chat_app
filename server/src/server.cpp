@@ -86,7 +86,7 @@ namespace server
                 res.set_content("No message provided in the request body", "text/plain");
             } });
     }
-        void Server::GetData()
+    void Server::GetData()
     {
         server_->Get("/", [&](const httplib::Request &req, httplib::Response &res)
                      {
@@ -94,6 +94,15 @@ namespace server
         res.set_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
         res.set_header("Access-Control-Allow-Headers", "Content-Type");
         try {
+            std::string email = req.get_param_value("email");
+            std::string full_token = req.get_header_value("Authorization");
+            std::string token = full_token.substr(7);
+            std::cout << token << std::endl;
+            
+            if (!(auth_->ValidateToken(email, token))) {
+                std::cout << auth_->ValidateToken(email, token) << std::endl;
+                throw std::invalid_argument("token is invalid");
+            }
             // Convert users_ vector to JSON
             std::shared_ptr<nlohmann::json> json_data = std::make_shared<nlohmann::json>();
             const auto dataInfo = auth_->GetDataInfo();
@@ -123,7 +132,7 @@ namespace server
             // Set the JSON response
             res.set_content((*json_data_).dump(), "application/json");
         } catch (const std::exception& e) {
-            res.set_content("Error converting data to JSON", "text/plain");
+            res.set_content("Access denied", "text/plain");
         } });
     }
 
