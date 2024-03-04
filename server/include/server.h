@@ -18,6 +18,7 @@ namespace server {
         void Login();
         void Register();
         void GetData();
+        void PostMessage();
         
         private:
         std::shared_ptr<Auth> auth_;
